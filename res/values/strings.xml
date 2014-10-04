@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Trauma Care 60</string>
+    
+    <string name="action_settings">Settings</string>
+    <string name="string1">Main Menu</string>
+    <string name="string2">Icon</string>
+    <color name="blue">#3b7cd9</color>
+    <color name="black">#000000</color>
+
+</resources>
