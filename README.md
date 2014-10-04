@@ -1,4 +1,4 @@
 trauma-care-60-android
 ======================
 
-Trauma Care 60
+© 2014 Manojit Ghosh
