@@ -2,11 +2,24 @@
 <resources>
 
     <string name="app_name">Trauma Care 60</string>
-    
     <string name="action_settings">Settings</string>
     <string name="string1">Main Menu</string>
     <string name="string2">Icon</string>
+
     <color name="blue">#3b7cd9</color>
     <color name="black">#000000</color>
+
+    <string name="pref_auto_mode">Auto mode</string>
+    <string name="pref_auto_mode_summary">Emergency tasks will be performed automatically in case of an accident</string>
+    <string name="pref_loudspeaker">Loudspeaker</string>
+    <string name="pref_loudspeaker_summary">Call to ambulance service provider will be put on loudspeaker automatically</string>
+    <string name="pref_asp">Ambulance service provider</string>
+    <string name="pref_asp_default">1</string>
+    <string name="pref_ec">Emergency contacts</string>
+    <string name="title_activity_initial_setup">Initial Setup</string>
+    <string name="preference_initial_setup">mg.traumacare60.preference_initial_setup</string>
+    <string name="preference_initial_setup_completion_status">preference_initial_setup_completion_status</string>
+    <string name="title_activity_tips">Tips</string>
+    
 
 </resources>

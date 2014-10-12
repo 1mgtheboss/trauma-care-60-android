@@ -1,13 +1,17 @@
 package mg.traumacare60;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
@@ -21,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
 		Task task_data[] = new Task[]
 				 {
 				 new Task(R.drawable.placeholder, "Perform emergency tasks"),
-				 new Task(R.drawable.placeholder, "First aid instructions"), 
+				 new Task(R.drawable.placeholder, "Tips for managing road accidents"), 
 				 new Task(R.drawable.placeholder, "Search for hospitals"),
 				 new Task(R.drawable.placeholder, "Medical data"),
 				 new Task(R.drawable.placeholder, "Car stopper"),
@@ -59,7 +63,26 @@ public class MainActivity extends ActionBarActivity {
 			                
 			            }
 			        });
+				 
+				 PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+				 
 				 }
+	
+	@Override
+	public void onResume() {
+	    super.onResume();  
+
+	    Context context = this;
+		 SharedPreferences sP = context.getSharedPreferences(
+		         getString(R.string.preference_initial_setup), Context.MODE_PRIVATE);
+		 int defaultValue = 0;
+		 int iSCS=sP.getInt(getString(R.string.preference_initial_setup_completion_status),defaultValue);
+		 if(iSCS!=100)
+		 {
+			 Intent intent = new Intent(this, InitialSetupActivity.class);
+			 startActivity(intent);
+		 }
+	}
 
 	
 
@@ -77,6 +100,8 @@ public class MainActivity extends ActionBarActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

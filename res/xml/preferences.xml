@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="pref_auto_mode"
+        android:title="@string/pref_auto_mode"
+        android:summary="@string/pref_auto_mode_summary"
+        android:defaultValue="true" />
+    <CheckBoxPreference
+        android:key="pref_loudspeaker"
+        android:title="@string/pref_loudspeaker"
+        android:summary="@string/pref_loudspeaker_summary"
+        android:defaultValue="true" />
+    <ListPreference
+        
+        android:key="pref_asp"
+        android:title="@string/pref_asp"
+        android:dialogTitle="@string/pref_asp"
+        android:entries="@array/pref_asp_entries"
+        android:entryValues="@array/pref_asp_values"
+        android:defaultValue="@string/pref_asp_default" />
+    <EditTextPreference 
+        	android:key="pref_ec"
+        	android:title="@string/pref_ec"            
+            android:dialogTitle="@string/pref_ec" />
+            
+    
+</PreferenceScreen>
