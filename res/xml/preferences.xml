@@ -22,6 +22,21 @@
         	android:key="pref_ec"
         	android:title="@string/pref_ec"            
             android:dialogTitle="@string/pref_ec" />
+    <ListPreference
+        
+        android:key="pref_hfr"
+        android:title="@string/pref_hfr"
+        android:dialogTitle="@string/pref_hfr"
+        android:entries="@array/pref_hfr_entries"
+        android:entryValues="@array/pref_hfr_values"
+        android:defaultValue="@string/pref_hfr_default" />
+    
+    <EditTextPreference 
+        	android:key="pref_aadhaar_no"
+        	android:title="@string/pref_aadhaar_no"            
+            android:dialogTitle="@string/pref_aadhaar_no"
+            
+            android:inputType="number" />
             
     
 </PreferenceScreen>
