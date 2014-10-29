@@ -26,6 +26,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -82,6 +83,7 @@ LocationListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nh);
 		
+		
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 		    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		    StrictMode.setThreadPolicy(policy);
@@ -102,6 +104,7 @@ LocationListener{
         mUpdatesRequested = true;
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 		
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 	}
 	
@@ -344,6 +347,7 @@ LocationListener{
     // Define the callback method that receives location updates
     @Override
     public void onLocationChanged(Location location) {
+    	try{
         // Report to the UI that the location was updated
     	
         String msg = "Updated Location: " +
@@ -441,10 +445,19 @@ LocationListener{
             e.printStackTrace();                
         }
         
-    	
+    	}
+    	catch(Exception e)
+    	{
+    		Toast.makeText(this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+    	}
     }
     
-    
+    @Override
+	protected void onDestroy(){
+	        super.onDestroy();
+	        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+	    }
     
    
 }

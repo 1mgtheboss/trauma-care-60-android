@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.webkit.WebView;
 
 public class LBActivity extends Activity {
@@ -15,6 +16,7 @@ public class LBActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lb);
 		
+		
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(NHActivity.EXTRA_MESSAGE);
 		if(message==null) message="NA";
@@ -23,6 +25,7 @@ public class LBActivity extends Activity {
 		webview.loadData(message, "text/html", null);
 		setContentView(webview);
 		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	@Override
@@ -43,4 +46,11 @@ public class LBActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	protected void onDestroy(){
+	        super.onDestroy();
+	        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+	    }
 }

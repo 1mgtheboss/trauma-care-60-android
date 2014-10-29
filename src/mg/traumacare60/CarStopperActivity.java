@@ -9,9 +9,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 public class CarStopperActivity extends Activity {
-	private Handler handler=new Handler();
-	private static int counter=0;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,42 +23,7 @@ public class CarStopperActivity extends Activity {
 		super.onResume();
 		
 		
-		try{
-			
-			handler.postDelayed(new Runnable() {
-				
-			    @Override
-			    public void run() {
-			    	try{
-			    		
-			    	if(counter==0) 
-			    	{
-			    		
-			    		findViewById(R.id.car_stopper_relative_layout).setBackgroundColor(Color.RED);
-			    		counter=1;
-			    		
-			    	}
-			    	else
-			    	{
-			    		
-			    		findViewById(R.id.car_stopper_relative_layout).setBackgroundColor(Color.BLACK);
-			    		counter=0;
-			    	}
-			    		
-			    	
-			    	handler.postDelayed(this, 2000);
-			    	}
-			    	catch(Exception e)
-			    	{
-			    		
-			    	}
-			    }
-			}, 2000);
-			}
-			catch(Exception e)
-			{
-				
-			}
+		
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 public class CTActivity extends Activity {
@@ -28,6 +29,7 @@ public class CTActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ct);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 	
 	
@@ -145,5 +147,12 @@ public class CTActivity extends Activity {
 
 	    return mediaFile;
 	}
+	
+	@Override
+	protected void onDestroy(){
+	        super.onDestroy();
+	        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+	    }
 	
 }

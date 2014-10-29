@@ -1,10 +1,8 @@
 package mg.traumacare60;
 
-import mg.traumacare60.NHActivity.ErrorDialogFragment;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -18,6 +16,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.telephony.PhoneStateListener;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
@@ -140,6 +139,10 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 			            		intent.setData(Uri.parse(url));
 			            		startActivity(intent);
 			            		break;
+			            	case 9:
+			            		intent = new Intent(getApplicationContext(), AboutActivity.class);
+			       			 	startActivity(intent);
+			       			 	break;
 			            	
 			            	}
 			                
@@ -150,7 +153,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 				 
 				 PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 				 
-				 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+				 
 				 
 				 uiHelper = new UiLifecycleHelper(this, null);
 				 uiHelper.onCreate(savedInstanceState);
@@ -174,6 +177,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 				 }
 				 }
 				 
+				 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 				 
 				 }
 	
@@ -181,6 +185,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	
 	public void performEmergencyTasks()
 	{
+		try{
 		
 		
 		String emergencyMessage="I have had an accident. ";
@@ -210,25 +215,52 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 				message,
                 Toast.LENGTH_SHORT).show();
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		String emergencyContacts = sharedPref.getString("pref_ec", "").replaceAll(",",";");
-		Uri mUri = Uri.parse("smsto:" + emergencyContacts);
-		Intent intent = new Intent(
-                android.content.Intent.ACTION_SENDTO, mUri);
-        intent.putExtra("sms_body", message);
+		
+		Intent intent;
+		String[] emergencyContacts = sharedPref.getString("pref_ec", "").split(",");
+		for(int i=0;i<emergencyContacts.length;i++)
+		{
+			sendSMSMessage(emergencyContacts[i],message);
+		}
+        boolean lP=sharedPref.getBoolean("pref_loudspeaker", true);
+        if(lP)
+        {
         mTelephonyManager.listen(mPhoneStateListener,
         	    PhoneStateListener.LISTEN_CALL_STATE); 
         	    callFromApp=true;
+        }
         String mASP=sharedPref.getString("pref_asp","");
         
         intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + mASP));
         startActivity(intent); 
         		
-		
+		}
+		catch(Exception e)
+		{
+			Toast.makeText(this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+		}
 		
 		 
 		
 	}
+	protected void sendSMSMessage(String phoneNo,String message) {
+	      Log.i("Send SMS", "");
+
+	      
+
+	      try {
+	         SmsManager smsManager = SmsManager.getDefault();
+	         smsManager.sendTextMessage(phoneNo, null, message, null, null);
+	         Toast.makeText(getApplicationContext(), "SMS sent.",
+	         Toast.LENGTH_SHORT).show();
+	      } catch (Exception e) {
+	         Toast.makeText(getApplicationContext(),
+	         "Something went wrong...",
+	         Toast.LENGTH_SHORT).show();
+	         e.printStackTrace();
+	      }
+	   }
 	
 	// 
 	 public class StatePhoneReceiver extends PhoneStateListener {

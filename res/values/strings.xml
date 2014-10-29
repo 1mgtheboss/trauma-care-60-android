@@ -17,9 +17,9 @@
     <string name="pref_loudspeaker">Loudspeaker</string>
     <string name="pref_loudspeaker_summary">Call to ambulance service provider will be put on loudspeaker automatically</string>
     <string name="pref_asp">Ambulance service provider</string>
-    <string name="pref_asp_default">9836416797</string>
+    <string name="pref_asp_default">102</string>
     <string name="pref_ec">Emergency contacts</string>
-    <string name="pref_hfr">Hospital finder range</string>
+    <string name="pref_hfr">Hospital finder range in km</string>
     <string name="pref_hfr_default">5</string>
     <string name="title_activity_initial_setup">Initial Setup</string>
     <string name="preference_initial_setup">mg.traumacare60.preference_initial_setup</string>
@@ -37,6 +37,9 @@
     <string name="string5">Capture photo</string>
     <string name="string6">Capture video</string>
     <string name="string7">HealthVault</string>
-    
+    <string name="string8">Add emergency contact</string>
+    <string name="string9">Skip</string>
+    <string name="title_activity_about">About</string>
+    <string name="string10">Trauma Care 60v1.0\nDeveloper: Manojit Ghosh</string>
 
 </resources>

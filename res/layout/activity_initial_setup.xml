@@ -8,25 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mg.traumacare60.InitialSetupActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
-        android:text="Add emergency contact"
-        android:onClick="addEmergencyContact" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -34,7 +15,26 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/button1"
         android:layout_marginTop="19dp"
-        android:text="Skip"
+        android:text="@string/string9"
         android:onClick="skip" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="addEmergencyContact"
+        android:text="@string/string8" />
 
 </RelativeLayout>

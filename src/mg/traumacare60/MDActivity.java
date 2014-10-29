@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MDActivity extends Activity {
@@ -18,6 +19,8 @@ public class MDActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_md);
 		
+		
+		
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		String aN = sharedPref.getString("pref_aadhaar_no", "");
 		TextView tV = (TextView)findViewById(R.id.textView1);
@@ -25,6 +28,8 @@ public class MDActivity extends Activity {
 			tV.setText("Your Aadhaar No:"+"\n"+aN);
 		else
 			tV.setText("Your Aadhaar No:"+"\n"+"Not set");
+		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	@Override
@@ -50,4 +55,11 @@ public class MDActivity extends Activity {
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.healthvault.com"));
 		startActivity(intent);
 	}
+	
+	@Override
+	protected void onDestroy(){
+	        super.onDestroy();
+	        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+	    }
 }
